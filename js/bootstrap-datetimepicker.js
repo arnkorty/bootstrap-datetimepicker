@@ -99,6 +99,8 @@
     this.showMeridian = options.showMeridian || this.element.data('show-meridian') || false;
     this.initialDate = options.initialDate || new Date();
     this.zIndex = options.zIndex || this.element.data('z-index') || undefined;
+    this.adjustTop = options.adjustTop || this.element.data('adjust-top') || 0;
+
 
     this.icons = {
       leftArrow: this.fontAwesome ? 'fa-arrow-left' : (this.bootcssVer === 3 ? 'glyphicon-arrow-left' : 'icon-arrow-left'),
@@ -532,7 +534,7 @@
 
       top = top - containerOffset.top;
       left = left - containerOffset.left;
-
+      top = top + this.adjustTop;
       this.picker.css({
         top:    top,
         left:   left,
@@ -1705,16 +1707,16 @@
     },
     headTemplate: '<thead>' +
                 '<tr>' +
-                '<th class="prev"><i class="{iconType} {leftArrow}"/></th>' +
+                '<th class="prev"><i class="{iconType} {leftArrow}"/>&#60;&#60;</th>' +
                 '<th colspan="5" class="switch"></th>' +
-                '<th class="next"><i class="{iconType} {rightArrow}"/></th>' +
+                '<th class="next"><i class="{iconType} {rightArrow}"/>&#62;&#62;</th>' +
                 '</tr>' +
       '</thead>',
     headTemplateV3: '<thead>' +
                 '<tr>' +
-                '<th class="prev"><span class="{iconType} {leftArrow}"></span> </th>' +
+                '<th class="prev"><span class="{iconType} {leftArrow}">&#60;&#60;</span> </th>' +
                 '<th colspan="5" class="switch"></th>' +
-                '<th class="next"><span class="{iconType} {rightArrow}"></span> </th>' +
+                '<th class="next"><span class="{iconType} {rightArrow}">&#62;&#62;</span> </th>' +
                 '</tr>' +
       '</thead>',
     contTemplate: '<tbody><tr><td colspan="7"></td></tr></tbody>',
