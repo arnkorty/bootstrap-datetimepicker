@@ -1492,6 +1492,10 @@
         }
         return UTCDate(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds(), 0);
       }
+      if (/^\d{4}.\d{1,2}.\d{1,2}.[T ]\d{1,2}\:\d{1,2}\:\d{1,2}[Z]{0,1}$/.test(date)) {
+        parts = date.match(/([\d]+\d+)/g);
+        return UTCDate(parts[0], parts[1] - 1, parts[2], parts[3], parts[4], parts[5] || 0, 0)
+      }
       var parts = date && date.toString().match(this.nonpunctuation) || [],
         date = new Date(0, 0, 0, 0, 0, 0, 0),
         parsed = {},
